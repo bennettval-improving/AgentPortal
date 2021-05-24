@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Agents";
+}
+@model AgentPortal.ViewModels.Home.HomeViewModel
+
+<div class="text-center">
+    @*<div class="container">*@
+        <h2 style="text-align: left">Agents</h2>
+        <br />
+
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>AgentCodes</th>
+                    <th>AgentName</th>
+                    <th>WorkPlace</th>
+                    <th>Commission</th>
+                    <th>PhoneNo</th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach (var agent in Model.Agents)
+                {
+                <tr>
+                    <td>@agent.AgentCode</td>
+                    <td>@agent.AgentName</td>
+                    <td>@agent.WorkingArea</td>
+                    <td>@agent.Commission</td>
+                    <td>@agent.PhoneNo</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    @*</div>*@
+</div>
