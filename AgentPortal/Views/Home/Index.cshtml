@@ -22,7 +22,7 @@
                @foreach (var agent in Model.Agents)
                 {
                 <tr>
-                    <td>@agent.AgentCode</td>
+                    <td><a href="/Home/Agent/@agent.AgentCode">@agent.AgentCode</a></td>
                     <td>@agent.AgentName</td>
                     <td>@agent.WorkingArea</td>
                     <td>@agent.Commission</td>
