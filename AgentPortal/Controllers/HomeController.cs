@@ -35,12 +35,6 @@ namespace AgentPortal.Controllers
             return View(homeViewModel);
         }
 
-        public IActionResult Agent(string code)
-        {
-            var agent = _repository.GetAgent(code);
-            return View(agent);
-        }
-
         public IActionResult Privacy()
         {
             return View();

@@ -88,5 +88,33 @@ namespace AgentPortal.Models
             }
             return agent;
         }
+
+        public void CreateAgent(Agent agent)
+        {
+            using (var conn = new SqlConnection(_configuration.GetConnectionString("default")))
+            {
+                conn.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.Text;
+                var agentCodeParam = new SqlParameter()
+                { 
+                    ParameterName = "@AgentCode",
+                    SqlDbType = SqlDbType.Char,
+                    Value = agent.AgentCode
+                };
+                cmd.Parameters.Add(agentCodeParam);
+
+                cmd.Parameters.AddWithValue("@AgentName", agent.AgentName);
+                cmd.Parameters.AddWithValue("@WorkingArea", agent.WorkingArea);
+                cmd.Parameters.AddWithValue("@Commission", agent.Commission);
+                cmd.Parameters.AddWithValue("@PhoneNo", agent.PhoneNo);
+                cmd.CommandText = 
+                    $"INSERT INTO AGENTS " +
+                    $"(AgentCode, AgentName, WorkingArea, Commission, PhoneNo) " +
+                    $"Values (@AgentCode, @AgentName, @WorkingArea, @Commission, @PhoneNo)";
+                var reader = cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

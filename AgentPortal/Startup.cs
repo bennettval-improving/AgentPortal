@@ -52,8 +52,9 @@ namespace AgentPortal
             {
                 endpoints.MapControllerRoute(
                     name: "GetAgent",
-                    pattern: "Home/Agent/{code?}",
-                    defaults: new { controller = "Home", action = "Agent" });
+                    pattern: "Agents/Agent/{code?}",
+                    defaults: new { controller = "Agents", action = "Agent" });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
