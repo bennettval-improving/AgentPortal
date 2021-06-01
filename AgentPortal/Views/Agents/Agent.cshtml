@@ -10,4 +10,22 @@
     <p><b>Working Area: </b>@Model.WorkingArea</p>
     <p><b>Commission: </b>@Model.Commission</p>
     <p><b>Phone Number: </b>@Model.PhoneNo</p>
+    <button class="btn btn-danger" id="delete-btn">Delete</button>
 </div>
+
+<script>
+
+    var deleteButton = document.querySelector('#delete-btn');
+    deleteButton.addEventListener('click', () => {
+        fetch(
+            '/agents/delete/@Model.AgentCode',
+            {
+                method: 'POST'
+            })
+            .then(() => {
+                console.log('made soft delete call @Model.AgentCode');
+                window.location.href = '/home/index';
+            });
+    });
+
+</script>

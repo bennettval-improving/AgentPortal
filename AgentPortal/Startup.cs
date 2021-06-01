@@ -51,6 +51,11 @@ namespace AgentPortal
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "DeleteAgent",
+                    pattern: "Agents/Delete/{code?}",
+                    defaults: new { controller = "Agents", action = "Delete" });
+
+                endpoints.MapControllerRoute(
                     name: "GetAgent",
                     pattern: "Agents/Agent/{code?}",
                     defaults: new { controller = "Agents", action = "Agent" });

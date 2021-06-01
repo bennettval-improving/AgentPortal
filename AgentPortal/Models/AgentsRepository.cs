@@ -27,7 +27,7 @@ namespace AgentPortal.Models
                 {
                     Connection = conn,
                     CommandType = CommandType.Text,
-                    CommandText = "SELECT * FROM AGENTS"
+                    CommandText = "SELECT * FROM AGENTS WHERE isDeleted = 0"
                 };
 
                 var reader = cmd.ExecuteReader();
@@ -113,6 +113,28 @@ namespace AgentPortal.Models
                     $"INSERT INTO AGENTS " +
                     $"(AgentCode, AgentName, WorkingArea, Commission, PhoneNo) " +
                     $"Values (@AgentCode, @AgentName, @WorkingArea, @Commission, @PhoneNo)";
+                var reader = cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void SoftDelete(string code)
+        {
+            using (var conn = new SqlConnection(_configuration.GetConnectionString("default")))
+            {
+                conn.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.Text;
+                var agentCodeParam = new SqlParameter()
+                {
+                    ParameterName = "@AgentCode",
+                    SqlDbType = SqlDbType.Char,
+                    Value = code
+                };
+                cmd.Parameters.Add(agentCodeParam);
+
+                cmd.CommandText =
+                    $"Update Agents SET isDeleted = 1 WHERE AgentCode = @AgentCode";
                 var reader = cmd.ExecuteNonQuery();
             }
         }

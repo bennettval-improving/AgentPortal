@@ -34,5 +34,11 @@ namespace AgentPortal.Controllers
             _repository.CreateAgent(agent);
             return Redirect("/home/index");
         }
+
+        [HttpPost]
+        public void Delete(string code)
+        {
+            _repository.SoftDelete(code);
+        }
     }
 }
