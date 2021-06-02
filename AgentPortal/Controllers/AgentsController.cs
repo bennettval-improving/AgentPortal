@@ -40,5 +40,19 @@ namespace AgentPortal.Controllers
         {
             _repository.SoftDelete(code);
         }
+
+        [HttpGet]
+        public IActionResult Edit(string code)
+        {
+            var agent = _repository.GetAgent(code);
+            return View(agent);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Agent agent)
+        {
+            _repository.EditAgent(agent);
+            return Redirect("/home/index");
+        }
     }
 }

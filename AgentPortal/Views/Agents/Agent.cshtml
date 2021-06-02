@@ -11,21 +11,25 @@
     <p><b>Commission: </b>@Model.Commission</p>
     <p><b>Phone Number: </b>@Model.PhoneNo</p>
     <button class="btn btn-danger" id="delete-btn">Delete</button>
+    <button class="btn btn-warning" id="edit-btn">Edit</button>
 </div>
 
 <script>
 
     var deleteButton = document.querySelector('#delete-btn');
+    var editButton = document.querySelector('#edit-btn');
+
     deleteButton.addEventListener('click', () => {
         fetch(
             '/agents/delete/@Model.AgentCode',
             {
                 method: 'POST'
             })
-            .then(() => {
-                console.log('made soft delete call @Model.AgentCode');
-                window.location.href = '/home/index';
-            });
+            .then(() => window.location.href = '/home/index');
+    });
+
+    editButton.addEventListener('click', () => {
+        window.location.href = '/agents/edit/@Model.AgentCode';
     });
 
 </script>

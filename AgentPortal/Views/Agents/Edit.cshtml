@@ -1,0 +1,55 @@
+﻿@model AgentPortal.Models.Agent
+
+<h2 id="edit-agent-header">Edit Agent</h2>
+
+<form method="POST" action="/agents/edit">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Agent Code</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" value="@Model.AgentCode" disabled>
+            <input type="hidden" name="AgentCode" value="@Model.AgentCode" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Agent Name</label>
+        <div class="col-sm-10">
+            <input type="text" name="AgentName" class="form-control" value="@Model.AgentName">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Working Area</label>
+        <div class="col-sm-10">
+            <input type="text" name="WorkingArea" class="form-control" value="@Model.WorkingArea">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Commission</label>
+        <div class="col-sm-10">
+            <input type="text" name="Commission" class="form-control" value="@Model.Commission">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Phone No</label>
+        <div class="col-sm-10">
+            <input type="text" name="PhoneNo" class="form-control" value="@Model.PhoneNo">
+        </div>
+    </div>
+
+    <button class="btn btn-secondary" id="edit-agent-btn" type="submit">Save</button>
+</form>
+
+<style>
+    .form-inline > h4 {
+        margin: 15px 15px;
+    }
+
+    #edit-agent-btn {
+        margin: 15px 0px;
+        padding: 5px 50px;
+    }
+
+    #edit-agent-header {
+        margin: 40px 0px;
+    }
+</style>
+
